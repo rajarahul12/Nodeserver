@@ -73,6 +73,6 @@ var port = process.env.PORT || 7000;
 app.listen(port);
 console.log('Node.js web server at port 7000 is running..');
 
-console.log("checking changes");
+console.log("checking changes ----> exports");
 
 exports = app;
