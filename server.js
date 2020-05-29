@@ -72,3 +72,5 @@ app.delete('/beneficiary', function (req, res) {
 var port = process.env.PORT || 7000
 app.listen(port);
 console.log('Node.js web server at port 7000 is running..')
+
+module.exports.app = app;
