@@ -75,4 +75,4 @@ console.log('Node.js web server at port 7000 is running..');
 
 console.log("checking changes");
 
-module.exports = app;
+exports = app;
