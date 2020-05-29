@@ -2,11 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.get('/beneficiary', function (req, res) {
 	console.log(">>>---------------- 1. headers ------------");
@@ -53,21 +53,21 @@ app.post('/beneficiary', function (req, res) {
 	console.log(JSON.stringify(req.headers));
 	console.log(">>> post");
 	res.json({});
-})
+});
 
 
 app.put('/beneficiary', function (req, res) {
 	console.log(JSON.stringify(req.headers));
 	console.log(">>> put");
 	res.json({});
-})
+});
 
 
 app.delete('/beneficiary', function (req, res) {
 	console.log(JSON.stringify(req.headers));
 	console.log(">>> delete");
 	res.json({});
-})
+});
 
 var port = process.env.PORT || 7000
 app.listen(port);
