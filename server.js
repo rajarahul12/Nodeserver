@@ -2,7 +2,7 @@ module.exports = () => {
 	var express = require('express');
 	var app = express();
 	var bodyParser = require('body-parser');
-	var mf = require('../mf.js')();
+// 	var mf = require('../mf.js')();
 
 	
 	app.use(bodyParser.urlencoded({ extended: false }));
