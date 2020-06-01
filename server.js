@@ -1,9 +1,9 @@
-module.exports = () => {
+module.exports = (mf) => {
 	var express = require('express');
 	var app = express();
 	var bodyParser = require('body-parser');
-	var mf = require('../mf.js')();
-	console.log("This is MF ---> " + JSON.stringify(mf));
+// 	var mf = require('../mf.js')();
+	console.log("This is MF as a param ---> " + JSON.stringify(mf));
 
 	
 	app.use(bodyParser.urlencoded({ extended: false }));
