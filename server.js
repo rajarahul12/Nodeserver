@@ -14,14 +14,7 @@ module.exports = (options) => {
 	
 	app.get('/liveupdate', (req, res) => {
 		
-		mf.liveupdate.setProperty('sampleID', 'sampleProperty', 1234, "Sample property description")
-		.then(function(response){
-			console.log(JSON.stringify(response));
-			).catch(e){
-			console.log(JSON.stringify(e));
-			}
-		})
-		;
+		mf.liveupdate.setProperty('sampleID', 'sampleProperty', 1234, "Sample property description");
 		res.send("Sample property has been set!");
 		
 	});
