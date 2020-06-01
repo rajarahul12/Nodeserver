@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = (mf) => {
 	var express = require('express');
 	var app = express();
 	var bodyParser = require('body-parser');
