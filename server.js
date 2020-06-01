@@ -1,7 +1,8 @@
-module.exports = (mf) => {
+module.exports = () => {
 	var express = require('express');
 	var app = express();
 	var bodyParser = require('body-parser');
+	var mf = require('../../tmp/src/mf.js')();
 
 	
 	app.use(bodyParser.urlencoded({ extended: false }));
