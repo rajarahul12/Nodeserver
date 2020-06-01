@@ -12,6 +12,13 @@ module.exports = (options) => {
 	
 	app.use(bodyParser.json());
 	
+	app.get('/liveupdate', (req, res) => {
+		
+		liveupdate.setProperty('sampleID', 'sampleProperty', 1234, "Sample property description");
+		res.send("Sample property has been set!");
+		
+	});
+	
 	app.get('/beneficiary', function (req, res) {
 
 		console.log("MF ---> " + JSON.stringify(mf) );
