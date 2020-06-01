@@ -16,7 +16,7 @@ module.exports = (options) => {
 
 		console.log("MF ---> " + JSON.stringify(mf) );
 
-		mf.mf.push.sendNotification("Hello from APP");
+		mf.push.sendNotification("Hello from APP");
 
 		console.log(">>>---------------- 1. headers ------------");
 		console.log(JSON.stringify(req.headers));
