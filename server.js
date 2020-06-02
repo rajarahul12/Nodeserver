@@ -50,7 +50,6 @@ module.exports = (options) => {
 			mf.analytics.sendCustomLogs(customLogInputs);
 
 			res.send("Order placed!");
-		});
 	});
 	
 	app.get('/liveupdate', (req, res) => {
