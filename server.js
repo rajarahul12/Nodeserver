@@ -4,6 +4,8 @@ module.exports = (options) => {
 	var bodyParser = require('body-parser');
 	var mf = options.mf;
 	console.log("This is MF as a param ---> " + JSON.stringify(mf));
+	var params = JSON.parse(process.env.MF_ENVVARS);
+	var securityUtils = require('../mobile-foundation/mf-security.js')(params.push);
 
 	
 	app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,6 +13,45 @@ module.exports = (options) => {
 	// parse application/json
 	
 	app.use(bodyParser.json());
+	
+	app.get('/placeOrder',securityUtils.mfpAuth('push.mobileclient'), (req, res) => {
+		
+		var messageText = "Hello world from MFP";
+		mf.push.sendNotification(messageText);
+
+		mf.liveupdate.setProperty('sampleID', 'sampleProperty', 1234, "Sample property description");
+		
+		/* Below push related user context data is obtained using the "securityUtils.mfpAuth" filter in the app.get request and 
+		sent to the analytics server. Hence the push parameters are passed to the "mf-security" module and push scope is sent to the 
+		filter as a parameter. */
+		
+			var userContext = JSON.stringify(req.securityContext);
+			console.log("UserContext --> " + userContext);
+			userContext = userContext.replace(/-/g, ''); //This is done to avoid json accessing errors
+	
+			var customLogInputs = {
+				"serverIpAddress": "9.1.2.34",
+				"customDataMap": {
+					"client id": userContext.client_id
+				},
+				"timestamp": "2020-05-03T05:12:53.432Z",
+				"timezone": "60",
+				"appVersion": "2.0 Beta",
+				"appName": "IBM Acme App",
+				"appID": userContext.mfpapplication.id,
+				"appVersionCode": userContext.mfpapplication.version,
+				"deviceID": userContext.mfpdevice.id,
+				"deviceModel": "iPhone6,2",
+				"deviceBrand": "Apple",
+				"deviceOS": "iOS",
+				"deviceOSversion": "9.2.1"
+			};
+			
+			mf.analytics.sendCustomLogs(customLogInputs);
+
+			res.send("Order placed!");
+		});
+	});
 	
 	app.get('/liveupdate', (req, res) => {
 		
