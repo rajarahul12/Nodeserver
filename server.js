@@ -125,7 +125,7 @@ module.exports = (options) => {
 		res.json({});
 	});
 	
-	var port = process.env.PORT || 7000;
+	var port = process.env.PORT || 8080;
 	app.listen(port);
 	console.log('Node.js web server at port 7000 is running..');
 	
