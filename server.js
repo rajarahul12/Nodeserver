@@ -14,6 +14,33 @@ module.exports = (options) => {
 	
 	app.use(bodyParser.json());
 	
+	app.get('/custom',(req,res) => {
+	var customData = {
+		  "active": true,
+		  "scope": "RegisteredClient push.mobileclient",
+		  "username": "anonymous",
+		  "client_id": "11111-4491-4f48-94d1-df541247e6ee",
+		  "exp": 1591254974076,
+		  "mfp-application": {
+		    "id": "com.demo.test",
+		    "clientPlatform": "android",
+		    "version": "1.0"
+		  },
+		  "mfp-device": {
+		    "id": "111111-6fe3-348a-a13f-e1bf5fcccf03",
+		    "hardware": "Android SDK built for x86lol",
+		    "platform": "android 12",
+		    "deviceDisplayName": null,
+		    "status": "ACTIVE"
+		  },
+		  "mfp-user": null,
+		  "mfp-checks": {}
+	}
+	mf.analytics.sendCustomLogs(customLogInputs);
+	res.send("custom logs have been sent!");
+	
+	})
+	
 	app.get('/analytics/networktransactions', (req, res) => {
 		
 		
