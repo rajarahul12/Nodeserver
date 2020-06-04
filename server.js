@@ -14,6 +14,50 @@ module.exports = (options) => {
 	
 	app.use(bodyParser.json());
 	
+	app.get('/order',mf.securityUtils.mfpAuth('accessRestricted'), (req, res) => {
+		var messageText = "Hello world from MFP";
+		mf.push.sendNotification(messageText);
+
+		mf.liveupdate.setProperty('bcg1', 'background', 'blue', "Property that is used to set background color");
+		
+		/* Below push related user context data is obtained using the "securityUtils.mfpAuth" filter in the app.get request and 
+		sent to the analytics server. Hence the push parameters are passed to the "mf-security" module and push scope is sent to the 
+		filter as a parameter. */
+
+		var userContext = JSON.stringify(req.securityContext);
+		userContext = userContext.replace('mfp-application', 'mfpapplication'); //This is done to avoid json accessing errors
+		userContext = userContext.replace('mfp-device', 'mfpdevice'); 
+		userContext = userContext.replace('mfp-user', 'mfpuser');
+		userContext = JSON.parse(userContext);
+			
+			var datetime = new Date();
+			var customLogInputs = {
+				"serverIpAddress": mf.analytics.mf_url,
+				"customDataMap": {
+					"client id": userContext.client_id
+				},
+				"timestamp": datetime,
+				"timezone": "60",
+				"appVersion": userContext.mfpapplication.version,
+				"appName": "IBM Acme App",
+				"appID": userContext.mfpapplication.id,
+				"appVersionCode": userContext.mfpapplication.version,
+				"deviceID": userContext.mfpdevice.id,
+				"deviceModel": "iPhone6,2",
+				"deviceBrand": "Apple",
+				"deviceOS": "iOS",
+				"deviceOSversion": "9.2.1"
+			};
+			
+// 		mf.analytics.sendCustomLogs(customLogInputs);
+
+// 		mf.push.sendNotificationByUser(messageText, [userContext.mfpuser.id] );
+		
+		mf.push.sendNotificationByDeviceId(messageText, [userContext.mfpdevice.id]);
+
+		res.send("Order placed!");
+	});
+	
 	app.get('/placeOrder',securityUtils.mfpAuth('push.mobileclient'), (req, res) => {
 		
 		var messageText = "Hello world from MFP";
