@@ -49,7 +49,7 @@ module.exports = (options) => {
 				"deviceOSversion": "9.2.1"
 			};
 			
-// 		mf.analytics.sendCustomLogs(customLogInputs);
+		mf.analytics.sendCustomLogs(customLogInputs);
 
 // 		mf.push.sendNotificationByUser(messageText, [userContext.mfpuser.id] );
 		
