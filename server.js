@@ -36,7 +36,7 @@ module.exports = (options) => {
 		  "mfp-user": null,
 		  "mfp-checks": {}
 	}
-	mf.analytics.sendCustomLogs(customLogInputs);
+	mf.analytics.sendCustomLogs(customData);
 	res.send("custom logs have been sent!");
 	
 	})
