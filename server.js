@@ -31,23 +31,23 @@ module.exports = (options) => {
 			userContext = JSON.parse(userContext);
 			console.log("Usercontext replaced ---> " + userContext.mfpapplication);
 	
-// 			var customLogInputs = {
-// 				"serverIpAddress": "9.1.2.34",
-// 				"customDataMap": {
-// 					"client id": userContext.client_id
-// 				},
-// 				"timestamp": "2020-05-03T05:12:53.432Z",
-// 				"timezone": "60",
-// 				"appVersion": "2.0 Beta",
-// 				"appName": "IBM Acme App",
-// 				"appID": userContext.mfpapplication.id,
-// 				"appVersionCode": userContext.mfpapplication.version,
-// 				"deviceID": userContext.mfpdevice.id,
-// 				"deviceModel": "iPhone6,2",
-// 				"deviceBrand": "Apple",
-// 				"deviceOS": "iOS",
-// 				"deviceOSversion": "9.2.1"
-// 			};
+			var customLogInputs = {
+				"serverIpAddress": "9.1.2.34",
+				"customDataMap": {
+					"client id": userContext.client_id
+				},
+				"timestamp": "2020-05-03T05:12:53.432Z",
+				"timezone": "60",
+				"appVersion": "2.0 Beta",
+				"appName": "IBM Acme App",
+				"appID": userContext.mfpapplication.id,
+				"appVersionCode": userContext.mfpapplication.version,
+				"deviceID": userContext.mfpdevice.id,
+				"deviceModel": "iPhone6,2",
+				"deviceBrand": "Apple",
+				"deviceOS": "iOS",
+				"deviceOSversion": "9.2.1"
+			};
 			
 // 			mf.analytics.sendCustomLogs(customLogInputs);
 
