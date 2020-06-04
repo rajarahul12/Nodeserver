@@ -27,7 +27,8 @@ module.exports = (options) => {
 		
 			var userContext = JSON.stringify(req.securityContext);
 			console.log("UserContext --> " + userContext);
-			userContext = userContext.replace(/-/g, ''); //This is done to avoid json accessing errors
+			userContext = userContext.replace(/-/g, '');
+			console.log("Usercontext replaced ---> " + userContext);
 	
 			var customLogInputs = {
 				"serverIpAddress": "9.1.2.34",
@@ -38,9 +39,9 @@ module.exports = (options) => {
 				"timezone": "60",
 				"appVersion": "2.0 Beta",
 				"appName": "IBM Acme App",
-				"appID": userContext.mfp-application.id,
-				"appVersionCode": userContext.mfp-application.version,
-				"deviceID": userContext.mfp-device.id,
+				"appID": userContext["mfp-application"]["id"],
+				"appVersionCode": userContext["mfp-application"]["version"],
+				"deviceID": userContext["mfp-device"]["id"],
 				"deviceModel": "iPhone6,2",
 				"deviceBrand": "Apple",
 				"deviceOS": "iOS",
