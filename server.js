@@ -28,6 +28,7 @@ module.exports = (options) => {
 			var userContext = JSON.stringify(req.securityContext);
 			console.log("UserContext --> " + userContext);
 			userContext = userContext.replace(/-/g, '');
+			userContext = JSON.parse(userContext);
 			console.log("Usercontext replaced ---> " + userContext.mfpapplication);
 	
 // 			var customLogInputs = {
