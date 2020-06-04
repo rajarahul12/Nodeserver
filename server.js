@@ -19,7 +19,7 @@ module.exports = (options) => {
 		var messageText = "Hello world from MFP";
 		mf.push.sendNotification(messageText);
 
-		mf.liveupdate.setProperty('titleColour', 'titleColour', red, "Sample property description");
+		mf.liveupdate.setProperty('titleColour', 'titleColour', "red", "Sample property description");
 		
 		/* Below push related user context data is obtained using the "securityUtils.mfpAuth" filter in the app.get request and 
 		sent to the analytics server. Hence the push parameters are passed to the "mf-security" module and push scope is sent to the 
