@@ -28,7 +28,7 @@ module.exports = (options) => {
 			var userContext = JSON.stringify(req.securityContext);
 			console.log("UserContext --> " + userContext);
 			userContext = userContext.replace(/-/g, '');
-			console.log("Usercontext replaced ---> " + userContext);
+			console.log("Usercontext replaced ---> " + userContext.mfpapplication);
 	
 // 			var customLogInputs = {
 // 				"serverIpAddress": "9.1.2.34",
