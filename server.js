@@ -14,6 +14,50 @@ module.exports = (options) => {
 	
 	app.use(bodyParser.json());
 	
+	app.get('/analytics/networktransactions', (req, res) => {
+		
+		
+		var networkLogInputs = {
+			"resourceURL": "http://9.8.7.6:9080/some/path",
+			"responseCode": "200",
+			"requestMethod": "GET",
+			"loginModuleName": "My Login Module",
+			"realmName": "userCredChallengerRealm",
+			"sessionID": "jfkld789087f908s",
+			"trackingID": "f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+			"serverIpAddress": "172.16.254.1",
+			"bytesReceived": "2300",
+			"bytesSent": "120",
+			"serverProcessingTime": "289",
+			"backendProcessingTime": "95",
+			"adapterName": "MyAdapter",
+			"procedureName": "MyProcedure",
+			"authenticator": "com.ibm.acme.MyAuthenticator",
+			"loginModule": "com.ibm.acme.MyLoginModule",
+			"authSuccess": false,
+			"validationCode": "TOKEN_FAILED_MISSING_PARAMETER",
+			"roundTripTime": "598",
+			"inboundTimestamp": "2020-05-03T05:12:53.459Z",
+			"outboundTimestamp": "2020-05-03T05:12:53.459Z",
+			"userAgent": "Mozilla/5.0 (Linux; U; Android 4.0.3; ...",
+			"appVersion": "2.0 Beta",
+			"appName": "IBM Acme App",
+			"appID": "com.ibm.acme",
+			"appVersionCode": "2",
+			"deviceID": "518c66913ec337f0",
+			"deviceModel": "iPhone6,2",
+			"deviceBrand": "Apple",
+			"deviceOS": "iOS",
+			"deviceOSversion": "9.2.1",
+			"timestamp": "2020-05-03T05:12:53.459Z",
+			"timezone": "60"
+		};
+		
+		mf.analytics.sendNetworkTransactions(networkLogInputs);
+		res.send("Network logs have been sent!");
+		
+	});
+	
 	app.get('/order',mf.securityUtils.mfpAuth('accessRestricted'), (req, res) => {
 		var messageText = "Hello world from MFP";
 		mf.push.sendNotification(messageText);
